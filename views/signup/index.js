@@ -8,6 +8,7 @@ const matchInput = document.querySelector('#match-input');
 const formBtn = document.querySelector('#form-btn');
 const notification = document.querySelector('#notification');
 
+console.log(nameInput);
 // Regex validations
 
 const EMAIL_VALIDATION = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -22,6 +23,7 @@ let matchValidation = false;
 
 const validation = (input, regexValidation) => {
     formBtn.disabled = nameValidation && emailValidation && passwordValidation && matchValidation ? false : true;
+    console.log(regexValidation);
 
     if (input.value === '') {
         input.classList.remove('outline-red-700','outline-2', 'outline');
@@ -30,6 +32,7 @@ const validation = (input, regexValidation) => {
     } else if (regexValidation) {
         input.classList.remove('focus:outline-indigo-700');
         input.classList.add('outline-green-700','outline-2', 'outline');
+        input.classList.remove('outline-red-700', 'outline-2', 'outline');
     } else if (!regexValidation) {
         input.classList.remove('focus:outline-indigo-700');
         input.classList.remove('outline-green-700', 'outline-2', 'outline');
@@ -42,6 +45,7 @@ const validation = (input, regexValidation) => {
 nameInput.addEventListener('input', e => {
     nameValidation = NAME_VALIDATION.test(e.target.value);
     validation(nameInput, nameValidation);
+    console.log(nameValidation);
 });
 
 emailInput.addEventListener('input', e => {
